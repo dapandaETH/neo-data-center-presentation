@@ -1,0 +1,164 @@
+<!-- Slide 08: Request Processing Flow -->
+<div class="slide-content">
+    <h2>Request Processing Flow</h2>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+        End-to-end request lifecycle with timing metrics
+    </p>
+    
+    <!-- Interactive Sequence Diagram -->
+    <div class="sequence-diagram" style="margin-top: var(--spacing-xl);">
+        <!-- Step 1: Client -->
+        <div class="sequence-step">
+            <div class="sequence-node svg-node" style="flex: 1; text-align: left;" data-tooltip="Client sends OpenAI v1 format request with API key. Typical request size: 1-10KB. Preparation time: <5ms">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="font-size: 16px;">Client</strong>
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">OpenAI v1 Request</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="chip" style="font-size: 10px;"><5ms</span>
+                    </div>
+                </div>
+                <ul style="font-size: 12px; margin-top: var(--spacing-sm); margin-left: var(--spacing-md);">
+                    <li>API key authentication</li>
+                    <li>Model selection</li>
+                    <li>Prompt + parameters</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">→</span>
+            <span style="font-size: 12px; color: var(--text-secondary); margin: 010px;">HTTP/HTTPS</span>
+        </div>
+        
+        <!-- Step 2: API Gateway -->
+        <div class="sequence-step">
+            <div class="sequence-node svg-node" style="flex: 1; text-align: left; border-color: var(--amber-accent);" data-tooltip="API Gateway validates authentication, checks rate limits, extracts model ID. Validation time: 1-5ms. Rate limit check: <1ms">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="font-size: 16px; color: var(--amber-accent);">API Gateway</strong>
+                        <div style="font-size: 12px; color: var(--amber-accent); margin-top: 4px;">Validate & Rate Limit</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="chip chip--amber" style="font-size: 10px;">1-5ms</span>
+                    </div>
+                </div>
+                <ul style="font-size: 12px; margin-top: var(--spacing-sm); margin-left: var(--spacing-md);">
+                    <li>Validate API key</li>
+                    <li>Check rate limits</li>
+                    <li>Extract model ID</li>
+                    <li>SSL termination</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">→</span>
+            <span style="font-size: 12px; color: var(--text-secondary); margin: 0 10px;">Internal</span>
+        </div>
+        
+        <!-- Step 3: Load Balancer -->
+        <div class="sequence-step">
+            <div class="sequence-node svg-node" style="flex: 1; text-align: left; border-color: var(--green-accent);" data-tooltip="Load Balancer routes to appropriate vLLM pod based on model type and availability. Routing decision: <2ms">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="font-size: 16px; color: var(--green-accent);">Load Balancer</strong>
+                        <div style="font-size: 12px; color: var(--green-accent); margin-top: 4px;">Route to Model Pod</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="chip chip--green" style="font-size: 10px;"><2ms</span>
+                    </div>
+                </div>
+                <ul style="font-size: 12px; margin-top: var(--spacing-sm); margin-left: var(--spacing-md);">
+                    <li>Model-based routing</li>
+                    <li>Health check verification</li>
+                    <li>Pod selection</li>
+                    <li>Load distribution</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">→</span>
+            <span style="font-size: 12px; color: var(--text-secondary); margin: 0 10px;">K8s Service</span>
+        </div>
+        
+        <!-- Step 4: vLLM Engine -->
+        <div class="sequence-step">
+            <div class="sequence-node svg-node" style="flex: 1; text-align: left; border-color: var(--cyan-accent); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, transparent 100%);" data-tooltip="vLLM Engine loads model (if not cached), processes request with PagedAttention and dynamic batching. Processing time: 100ms-30s depending on model size and prompt length">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="font-size: 16px; color: var(--cyan-accent);">vLLM Engine</strong>
+                        <div style="font-size: 12px; color: var(--cyan-accent); margin-top: 4px;">Process Request</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="chip" style="font-size: 10px;">100ms-30s</span>
+                    </div>
+                </div>
+                <ul style="font-size: 12px; margin-top: var(--spacing-sm); margin-left: var(--spacing-md);">
+                    <li>Load model (or use cache)</li>
+                    <li>PagedAttention inference</li>
+                    <li>Dynamic batching</li>
+                    <li>Token generation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">→</span>
+            <span style="font-size: 12px; color: var(--text-secondary); margin: 0 10px;">OpenAI v1</span>
+        </div>
+        
+        <!-- Step 5: Response -->
+        <div class="sequence-step">
+            <div class="sequence-node svg-node" style="flex: 1; text-align: left; border-color: var(--magenta-accent);" data-tooltip="API Gateway formats response as OpenAI v1 compliant JSON with usage metrics. Response formatting: <5ms">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="font-size: 16px; color: var(--magenta-accent);">Response</strong>
+                        <div style="font-size: 12px; color: var(--magenta-accent); margin-top: 4px;">OpenAI v1 Format</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="chip chip--magenta" style="font-size: 10px;"><5ms</span>
+                    </div>
+                </div>
+                <ul style="font-size: 12px; margin-top: var(--spacing-sm); margin-left: var(--spacing-md);">
+                    <li>Format OpenAI v1 JSON</li>
+                    <li>Include usage metrics</li>
+                    <li>Return to client</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Performance Metrics -->
+    <div style="margin-top: var(--spacing-xxl);">
+        <h3 style="font-size: 18px; margin-bottom: var(--spacing-md); color: var(--cyan-accent);">Performance Metrics</h3>
+        <div class="grid grid-4">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 500; color: var(--cyan-accent);">P50</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: var(--spacing-sm);">200-500ms</div>
+                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Short prompts</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 500; color: var(--amber-accent);">P95</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: var(--spacing-sm);">1-5 seconds</div>
+                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Medium prompts</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 500; color: var(--green-accent);">P99</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: var(--spacing-sm);">5-30 seconds</div>
+                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Long prompts</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 500; color: var(--magenta-accent);">GPU</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: var(--spacing-sm);">70-90%</div>
+                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Utilization target</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="slide-content">
+    <h1>Phase 2: Production</h1>
+    <p class="subtitle">Weeks 7-12 • Budget: $200K</p>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 7-8: Multi-Model Support</h4>
+                <ul>
+                    <li>Deploy additional vLLM pods (13B, 70B models)</li>
+                    <li>Implement model registry service</li>
+                    <li>Create model download orchestration</li>
+                    <li>Configure node selectors for model scheduling</li>
+                    <li>Implement PodDisruptionBudgets for HA</li>
+                </ul>
+                <div class="budget-tag" data-tooltip="Phase 2: $200K - $50K hardware, $60K security, $70K API, $20K testing">
+                    <span class="chip chip--green">Hardware: $50K</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 9-10: Advanced API Features</h4>
+                <ul>
+                    <li>Implement OpenAI Chat Completions API</li>
+                    <li>Add request/response transformation in Kong</li>
+                    <li>Integrate JWT token authentication</li>
+                    <li>Configure rate limiting per customer tier</li>
+                    <li>Add circuit breakers and timeout handling</li>
+                </ul>
+                <div class="budget-tag">
+                    <span class="chip chip--amber">API Development: $70K</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 11-12: Security & Compliance</h4>
+                <ul>
+                    <li>Deploy network policies for pod isolation</li>
+                    <li>Implement RBAC within Kubernetes</li>
+                    <li>Set up audit logging</li>
+                    <li>Configure encryption at rest and in transit</li>
+                    <li>Add GDPR compliance features</li>
+                </ul>
+                <div class="budget-tag">
+                    <span class="chip chip--magenta">Security: $60K</span>
+                    <span class="chip" style="margin-left: 8px;">Testing: $20K</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card card--highlight" style="margin-top: 24px;">
+        <strong>✅ Milestone:</strong> Production ready - multi-model, secure API
+    </div>
+</div>

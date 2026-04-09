@@ -1,0 +1,108 @@
+<!-- Slide 05: Architecture Overview -->
+<div class="slide-content">
+    <h2>Architecture Overview</h2>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+        High-level data flow from external clients through the infrastructure stack
+    </p>
+    
+    <!-- Interactive SVG Flow Chart -->
+    <div class="sequence-diagram" style="margin-top: var(--spacing-xl);">
+        <!-- Row 1: External Clients -->
+        <div class="sequence-step" style="justify-content: flex-start;">
+            <div class="sequence-node svg-node" data-tooltip="External applications and users making API requests via OpenAI v1 compatible endpoints">
+                <strong>External Clients</strong>
+                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">API Consumers</div>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">↓</span>
+        </div>
+        
+        <!-- Row 2: API Gateway -->
+        <div class="sequence-step" style="justify-content: flex-start;">
+            <div class="sequence-node svg-node" style="border-color: var(--amber-accent);" data-tooltip="Kong/Envoy Gateway: Authentication (API keys, JWT), Rate limiting, SSL termination, Request/response transformation">
+                <strong>API Gateway</strong>
+                <div style="font-size: 12px; color: var(--amber-accent); margin-top: 4px;">Kong / Envoy</div>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">↓</span>
+        </div>
+        
+        <!-- Row 3: Load Balancer -->
+        <div class="sequence-step" style="justify-content: flex-start;">
+            <div class="sequence-node svg-node" style="border-color: var(--green-accent);" data-tooltip="MetalLB/Cloud Load Balancer: Routes traffic to appropriate Kubernetes pods based on model type and availability">
+                <strong>Load Balancer</strong>
+                <div style="font-size: 12px; color: var(--green-accent); margin-top: 4px;">MetalLB</div>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">↓</span>
+        </div>
+        
+        <!-- Row 4: Kubernetes Cluster -->
+        <div class="sequence-step" style="justify-content: flex-start;">
+            <div class="sequence-node svg-node" style="border-color: var(--cyan-accent); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, transparent 100%);" data-tooltip="Kubernetes cluster with vLLM inference pods, GPU sharing (MIG/time-slice), model registry, monitoring, and logging stacks">
+                <strong>Kubernetes Cluster</strong>
+                <div style="font-size: 12px; color: var(--cyan-accent); margin-top: 4px;">vLLM + GPU Sharing</div>
+            </div>
+        </div>
+        
+        <!-- Arrow -->
+        <div style="display: flex; justify-content: center; padding: var(--spacing-sm) 0;">
+            <span class="sequence-arrow">↓</span>
+        </div>
+        
+        <!-- Row 5: Storage Layer + Database -->
+        <div class="sequence-step" style="justify-content: flex-start; gap: var(--spacing-xl);">
+            <div class="sequence-node svg-node" style="border-color: var(--magenta-accent); flex: 1;" data-tooltip="Model weights, artifacts, and configurations stored in MinIO (S3-compatible) with NVMe local storage for active models">
+                <strong>Storage Layer</strong>
+                <div style="font-size: 12px; color: var(--magenta-accent); margin-top: 4px;">MinIO + NVMe</div>
+            </div>
+            <div class="sequence-node svg-node" style="border-color: var(--magenta-accent); flex: 1;" data-tooltip="PostgreSQL for user accounts, billing, and operational metrics with Redis caching layer">
+                <strong>Database</strong>
+                <div style="font-size: 12px; color: var(--magenta-accent); margin-top: 4px;">PostgreSQL + Redis</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Key Components -->
+    <div style="margin-top: var(--spacing-xxl);">
+        <h3 style="font-size: 20px; margin-bottom: var(--spacing-md);">Key Components</h3>
+        <div class="grid grid-3">
+            <div class="card">
+                <h4 style="color: var(--amber-accent);">API Gateway</h4>
+                <p style="font-size: 14px; margin-bottom: 8px;"><strong>Auth & Security</strong></p>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>API key validation</li>
+                    <li>JWT authentication</li>
+                    <li>Rate limiting per tier</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4 style="color: var(--green-accent);">Load Balancer</h4>
+                <p style="font-size: 14px; margin-bottom: 8px;"><strong>Traffic Routing</strong></p>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Model-based routing</li>
+                    <li>Health checks</li>
+                    <li>Circuit breakers</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4 style="color: var(--cyan-accent);">Kubernetes</h4>
+                <p style="font-size: 14px; margin-bottom: 8px;"><strong>Orchestration</strong></p>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>vLLM inference pods</li>
+                    <li>GPU sharing (MIG)</li>
+                    <li>Auto-scaling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

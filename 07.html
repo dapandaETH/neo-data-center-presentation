@@ -1,0 +1,165 @@
+<!-- Slide 07: Core Components Detail -->
+<div class="slide-content">
+    <h2>Core Components Detail</h2>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+        Deep dive into the three primary infrastructure components
+    </p>
+    
+    <!-- Component 1: vLLM Inference Service -->
+    <div class="card card--highlight" style="margin-bottom: var(--spacing-xl);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-md);">
+            <div>
+                <h3 style="color: var(--cyan-accent); font-size: 24px; margin-bottom: var(--spacing-sm);">
+                    vLLM Inference Service
+                </h3>
+                <p style="font-size: 15px; color: var(--text-primary);">
+                    High-performance LLM serving with PagedAttention optimization
+                </p>
+            </div>
+            <div style="flex-shrink: 0; margin-left: var(--spacing-lg);">
+                <span class="chip" style="font-size: 11px;">Core Engine</span>
+            </div>
+        </div>
+        
+        <div class="grid grid-3" style="margin-top: var(--spacing-lg);">
+            <div>
+                <h4 style="color: var(--amber-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">PagedAttention Engine</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Efficient KV cache management</li>
+                    <li>Memory allocation optimization</li>
+                    <li>Reduced GPU memory footprint</li>
+                    <li>Support for variable-length sequences</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--green-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Dynamic Batching</h4>
+                <ulstyle="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Continuous batching mode</li>
+                    <li>Automatic request coalescing</li>
+                    <li>Improved GPU utilization</li>
+                    <li>Lower latency per request</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--magenta-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Health & Readiness</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Kubernetes readiness probes</li>
+                    <li>Liveness checks</li>
+                    <li>Prometheus metrics endpoint</li>
+                    <li>Graceful shutdown handling</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top: var(--spacing-lg); padding-top: var(--spacing-md); border-top: 1px solid rgba(0, 240, 255, 0.1);">
+            <div style="display: flex; gap: var(--spacing-md); align-items: center;">
+                <span class="chip">Container Runtime</span>
+                <span class="chip chip--amber">GPU Sharing Ready</span>
+                <span class="chip chip--green">Multi-Model Support</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Component 2: Kubernetes Infrastructure -->
+    <div class="card" style="margin-bottom: var(--spacing-xl);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-md);">
+            <div>
+                <h3 style="color: var(--amber-accent); font-size: 24px; margin-bottom: var(--spacing-sm);">
+                    Kubernetes Infrastructure
+                </h3>
+                <p style="font-size: 15px; color: var(--text-primary);">
+                    Container orchestration with GPU-aware scheduling
+                </p>
+            </div>
+            <div style="flex-shrink: 0; margin-left: var(--spacing-lg);">
+                <span class="chip chip--amber" style="font-size: 11px;">Orchestration</span>
+            </div>
+        </div>
+        
+        <div class="grid grid-3" style="margin-top: var(--spacing-lg);">
+            <div>
+                <h4 style="color: var(--cyan-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">NodePools</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li><strong>GPU-small:</strong> 6-12 nodes × 2×RTX 4090 (7B models)</li>
+                    <li><strong>GPU-medium:</strong> 4-6 nodes × 4×A6000 (13B models)</li>
+                    <li><strong>GPU-large:</strong> 4-8 nodes × 8×A100/H100 (70B+ models)</li>
+                    <li><strong>CPU-only:</strong> Control plane nodes</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--green-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Resource Management</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Per-namespace resource quotas</li>
+                    <li>GPU scheduling via NVIDIA Operator</li>
+                    <li>Persistent Volume Claims</li>
+                    <li>PodDisruptionBudgets for HA</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--magenta-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Network Policies</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Pod-to-pod communication rules</li>
+                    <li>Customer namespace isolation</li>
+                    <li>Service mesh ready</li>
+                    <li>Ingress/egress controls</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Component 3: API Gateway Layer -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-md);">
+            <div>
+                <h3 style="color: var(--green-accent); font-size: 24px; margin-bottom: var(--spacing-sm);">
+                    API Gateway Layer
+                </h3>
+                <p style="font-size: 15px; color: var(--text-primary);">
+                    Request management, authentication, and traffic control
+                </p>
+            </div>
+            <div style="flex-shrink: 0; margin-left: var(--spacing-lg);">
+                <span class="chip chip--green" style="font-size: 11px;">Security Boundary</span>
+            </div>
+        </div>
+        
+        <div class="grid grid-3" style="margin-top: var(--spacing-lg);">
+            <div>
+                <h4 style="color: var(--cyan-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Kong / Envoy Gateway</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>OpenAI v1 API endpoint</li>
+                    <li>Request/response transformation</li>
+                    <li>SSL/TLS termination</li>
+                    <li>Circuit breakers</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--amber-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Authentication</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>API key validation</li>
+                    <li>JWT token support</li>
+                    <li>Customer tier management</li>
+                    <li>RBAC integration</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--green-accent); font-size: 16px; margin-bottom: var(--spacing-sm);">Traffic Control</h4>
+                <ul style="font-size: 13px; margin-left: var(--spacing-md);">
+                    <li>Rate limiting per tier</li>
+                    <li>Request timeout enforcement</li>
+                    <li>Retry policies</li>
+                    <li>Timeout handling</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top: var(--spacing-lg); padding-top: var(--spacing-md); border-top: 1px solid rgba(0, 240, 255, 0.1);">
+            <div style="display: flex; gap: var(--spacing-md); align-items: center;">
+                <span class="chip">TLS 1.3</span>
+                <span class="chip chip--amber">Rate Limits</span>
+                <span class="chip chip--magenta">Circuit Breakers</span>
+                <span class="chip chip--green">Auth Layers</span>
+            </div>
+        </div>
+    </div>
+</div>

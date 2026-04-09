@@ -1,0 +1,165 @@
+<!-- ============================================
+     Slide 17 - Testing Strategy
+     3 environment cards: Development, Staging, Production
+     ============================================ -->
+
+<div class="slide-content">
+    <h1>Testing Strategy</h1>
+    <p class="slide-subtitle">Three-Environment Deployment Pipeline</p>
+
+    <div class="grid grid-3">
+        <!-- Development Environment -->
+        <div class="env-card env-card--dev">
+            <div class="env-header">
+                <div class="env-icon">🧪</div>
+                <h2 class="env-title">Development</h2>
+                <span class="env-label">Minikube / k3d</span>
+            </div>
+            
+            <div class="env-body">
+                <div class="env-spec">
+                    <div class="spec-item">
+                        <span class="spec-label">GPU Capacity</span>
+                        <span class="spec-value">1-2 GPUs</span>
+                    </div>
+                </div>
+
+                <div class="env-testing">
+                    <h3 class="testing-title">Testing Activities</h3>
+                    <ul class="testing-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Unit tests</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Integration tests</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Performance benchmarks</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Model validation</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Rapid iteration</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="env-purpose">
+                    <span class="purpose-label">Purpose:</span>
+                    <span class="purpose-text">Fast feedback loop for development teams</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staging Environment -->
+        <div class="env-card env-card--staging">
+            <div class="env-header">
+                <div class="env-icon">🔍</div>
+                <h2 class="env-title">Staging</h2>
+                <span class="env-label">Production-Like</span>
+            </div>
+            
+            <div class="env-body">
+                <div class="env-spec">
+                    <div class="spec-item">
+                        <span class="spec-label">GPU Capacity</span>
+                        <span class="spec-value">5-10 GPUs</span>
+                    </div>
+                </div>
+
+                <div class="env-testing">
+                    <h3 class="testing-title">Testing Activities</h3>
+                    <ul class="testing-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Load testing</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>End-to-end flows</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Security pentesting</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>API compatibility</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Realistic traffic patterns</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="env-purpose">
+                    <span class="purpose-label">Purpose:</span>
+                    <span class="purpose-text">Validate before production deployment</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Production Environment -->
+        <div class="env-card env-card--prod">
+            <div class="env-header">
+                <div class="env-icon">🚀</div>
+                <h2 class="env-title">Production</h2>
+                <span class="env-label">Full Scale</span>
+            </div>
+            
+            <div class="env-body">
+                <div class="env-spec">
+                    <div class="spec-item">
+                        <span class="spec-label">Deployment Strategy</span>
+                        <span class="spec-value">Blue-Green + Canary</span>
+                    </div>
+                </div>
+
+                <div class="env-testing">
+                    <h3 class="testing-title">Deployment Safeguards</h3>
+                    <ul class="testing-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Gradual traffic migration</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>10% → 25% → 50% → 100%</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Automated rollback</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>24/7 monitoring</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Incident response</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="env-purpose">
+                    <span class="purpose-label">Purpose:</span>
+                    <span class="purpose-text">Zero-downtime deployments with canary releases</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testing-footer">
+        <div class="footer-note">
+            <span class="note-icon">⚠️</span>
+            <span class="note-text">All environments use <strong>identical configuration</strong> for consistency</span>
+        </div>
+    </div>
+</div>

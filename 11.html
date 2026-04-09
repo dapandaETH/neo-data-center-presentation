@@ -1,0 +1,61 @@
+<div class="slide-content">
+    <h1>Phase1: Foundation</h1>
+    <p class="subtitle">Weeks 1-6 • Budget: $150K</p>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 1-2: Infrastructure Provisioning</h4>
+                <ul>
+                    <li>Provision Kubernetes cluster with GPU support</li>
+                    <li>Deploy GPU worker nodes (RTX 4090, A6000, A100)</li>
+                    <li>Install NVIDIA GPU Operator</li>
+                    <li>Configure NVLink and 25GbE networking</li>
+                    <li>Set up MinIO storage cluster (50TB)</li>
+                </ul>
+                <div class="budget-tag" data-tooltip="Phase 1: $150K - $100K hardware, $40K software, $10K testing">
+                    <span class="chip chip--green">Hardware: $100K</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 3-4: Core vLLM Deployment</h4>
+                <ul>
+                    <li>Build vLLM Docker images with CUDA support</li>
+                    <li>Deploy vLLM pod for Llama-3-7B model</li>
+                    <li>Configure PVCs for model storage (NVMe local)</li>
+                    <li>Implement health checks and readiness probes</li>
+                    <li>Set up Prometheus metrics collection</li>
+                </ul>
+                <div class="budget-tag">
+                    <span class="chip chip--amber">Software: $40K</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Week 5-6: API Gateway & Monitoring</h4>
+                <ul>
+                    <li>Deploy Kong API Gateway with basic routing</li>
+                    <li>Configure MetalLB load balancer</li>
+                    <li>Implement API key authentication</li>
+                    <li>Set up Prometheus + Grafana monitoring</li>
+                    <li>Deploy Loki for centralized logging</li>
+                </ul>
+                <div class="budget-tag">
+                    <span class="chip chip--magenta">Testing: $10K</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card card--highlight" style="margin-top: 24px;">
+        <strong>✅ Milestone:</strong> Foundation complete - basic inference working
+    </div>
+</div>

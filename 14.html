@@ -1,0 +1,116 @@
+<!-- ============================================
+     Slide 14 - Infrastructure Requirements
+     Technical specifications table with 4 categories
+     Material Design 3 data table with cyan headers
+     ============================================ -->
+
+<div class="slide-content">
+    <h1>Infrastructure Requirements</h1>
+    <p class="slide-subtitle">Hardware, Network, Storage & Software Specifications</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Configuration</th>
+                <th>Capacity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="category-header">
+                <td colspan="4">
+                    <span class="cat-icon">🖥️</span>
+                    <strong>Hardware</strong>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4">Hardware</td>
+                <td>GPU-Large Nodes</td>
+                <td>4-8 nodes × 8×A100/H100 (80GB)</td>
+                <td>70B+ models</td>
+            </tr>
+            <tr>
+                <td>GPU-Medium Nodes</td>
+                <td>4-6 nodes × 4×A6000 (48GB)</td>
+                <td>13B models</td>
+            </tr>
+            <tr>
+                <td>GPU-Small Nodes</td>
+                <td>6-12 nodes × 2×RTX 4090 (24GB)</td>
+                <td>7B models</td>
+            </tr>
+            <tr>
+                <td>Control Plane</td>
+                <td>3 nodes × 64GB RAM, 16 vCPUs</td>
+                <td>Orchestration</td>
+            </tr>
+            <tr class="category-header">
+                <td colspan="4">
+                    <span class="cat-icon">🌐</span>
+                    <strong>Network</strong>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Network</td>
+                <td>Inter-node</td>
+                <td>10/25 GbE connectivity</td>
+                <td>High bandwidth</td>
+            </tr>
+            <tr>
+                <td>GPU Communication</td>
+                <td>NVLink for A100/H100</td>
+                <td>Low latency</td>
+            </tr>
+            <tr class="category-header">
+                <td colspan="4">
+                    <span class="cat-icon">💾</span>
+                    <strong>Storage</strong>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="3">Storage</td>
+                <td>Active Models</td>
+                <td>50TB NVMe SSD</td>
+                <td>Fast access</td>
+            </tr>
+            <tr>
+                <td>Model Repository</td>
+                <td>200TB MinIO cluster</td>
+                <td>S3-compatible</td>
+            </tr>
+            <tr>
+                <td>Database</td>
+                <td>5TB PostgreSQL</td>
+                <td>Metadata</td>
+            </tr>
+            <tr class="category-header">
+                <td colspan="4">
+                    <span class="cat-icon">⚙️</span>
+                    <strong>Software</strong>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4">Software</td>
+                <td>Orchestration</td>
+                <td>Kubernetes 1.28+</td>
+                <td>Container orchestration</td>
+            </tr>
+            <tr>
+                <td>Inference Engine</td>
+                <td>vLLM latest stable</td>
+                <td>Model serving</td>
+            </tr>
+            <tr>
+                <td>API Gateway</td>
+                <td>Kong / Envoy Gateway</td>
+                <td>Routing & auth</td>
+            </tr>
+            <tr>
+                <td>Observability</td>
+                <td>Prometheus + Grafana + PostgreSQL</td>
+                <td>Monitoring stack</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

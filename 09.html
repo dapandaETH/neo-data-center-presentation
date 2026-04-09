@@ -1,0 +1,174 @@
+<!-- Slide 09: OpenAI v1 API Compatibility -->
+<div class="slide-content">
+    <h2>OpenAI v1 API Compatibility</h2>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+        Drop-in replacement for OpenAI API with identical request/response format
+    </p>
+    
+    <!-- Two Column Layout: Request & Response -->
+    <div class="grid grid-2" style="margin-bottom: var(--spacing-xl);">
+        <!-- Column 1: Request Example -->
+        <div>
+            <h3 style="font-size: 18px; color: var(--cyan-accent); margin-bottom: var(--spacing-md);">
+                Request Format
+            </h3>
+            <div class="card" style="background: var(--bg-tertiary);">
+                <pre style="margin: 0; font-size: 12px; line-height: 1.6;"><code style="color: var(--text-secondary);">{
+  <span style="color: var(--cyan-accent);">"model"</span>: <span style="color: var(--green-accent);">"llama3-70b-instruct"</span>,
+  <span style="color: var(--cyan-accent);">"messages"</span>: [
+    {
+      <span style="color: var(--cyan-accent);">"role"</span>: <span style="color: var(--green-accent);">"system"</span>,
+      <span style="color: var(--cyan-accent);">"content"</span>: <span style="color: var(--green-accent);">"You are a helpful assistant"</span>
+    },
+    {
+      <span style="color: var(--cyan-accent);">"role"</span>: <span style="color: var(--green-accent);">"user"</span>,
+      <span style="color: var(--cyan-accent);">"content"</span>: <span style="color: var(--green-accent);">"Hello!"</span>
+    }
+  ],
+  <span style="color: var(--cyan-accent);">"temperature"</span>: <span style="color: var(--amber-accent);">0.7</span>,
+  <span style="color: var(--cyan-accent);">"max_tokens"</span>: <span style="color: var(--amber-accent);">1024</span>,
+  <span style="color: var(--cyan-accent);">"top_p"</span>: <span style="color: var(--amber-accent);">0.9</span>,
+  <span style="color: var(--cyan-accent);">"stream"</span>: <span style="color: var(--magenta-accent);">false</span>
+}</code></pre>
+            </div>
+            
+            <!-- Request Parameters -->
+            <div style="margin-top: var(--spacing-md);">
+                <h4 style="font-size: 14px; color: var(--amber-accent); margin-bottom: var(--spacing-sm);">Parameters</h4>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+                    <div style="font-size: 12px;">
+                        <span class="chip" style="font-size: 10px;">model</span>
+                        <span style="color: var(--text-secondary);"> - Model identifier</span>
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span class="chip chip--amber" style="font-size: 10px;">messages</span>
+                        <span style="color: var(--text-secondary);"> - Conversation history</span>
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span class="chip chip--green" style="font-size: 10px;">temperature</span>
+                        <span style="color: var(--text-secondary);"> - Sampling randomness (0-2)</span>
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span class="chip chip--magenta" style="font-size: 10px;">max_tokens</span>
+                        <span style="color: var(--text-secondary);"> - Max generation length</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Column 2: Response Example -->
+        <div>
+            <h3 style="font-size: 18px; color: var(--cyan-accent); margin-bottom: var(--spacing-md);">
+                Response Format
+            </h3>
+            <div class="card" style="background: var(--bg-tertiary);">
+                <pre style="margin: 0; font-size: 12px; line-height: 1.6;"><code style="color: var(--text-secondary);">{
+  <span style="color: var(--cyan-accent);">"id"</span>: <span style="color: var(--green-accent);">"chatcmpl-abc123"</span>,
+  <span style="color: var(--cyan-accent);">"object"</span>: <span style="color: var(--green-accent);">"chat.completion"</span>,
+  <span style="color: var(--cyan-accent);">"created"</span>: <span style="color: var(--amber-accent);">1715623410</span>,
+  <span style="color: var(--cyan-accent);">"model"</span>: <span style="color: var(--green-accent);">"llama3-70b-instruct"</span>,
+  <span style="color: var(--cyan-accent);">"choices"</span>: [
+    {
+      <span style="color: var(--cyan-accent);">"index"</span>: <span style="color: var(--amber-accent);">0</span>,
+      <span style="color: var(--cyan-accent);">"message"</span>: {
+        <span style="color: var(--cyan-accent);">"role"</span>: <span style="color: var(--green-accent);">"assistant"</span>,
+        <span style="color: var(--cyan-accent);">"content"</span>: <span style="color: var(--green-accent);">"Hello! I'm here to help you."</span>
+      },
+      <span style="color: var(--cyan-accent);">"finish_reason"</span>: <span style="color: var(--green-accent);">"stop"</span>
+    }
+  ],
+  <span style="color: var(--cyan-accent);">"usage"</span>: {
+    <span style="color: var(--cyan-accent);">"prompt_tokens"</span>: <span style="color: var(--amber-accent);">15</span>,
+    <span style="color: var(--cyan-accent);">"completion_tokens"</span>: <span style="color: var(--amber-accent);">10</span>,
+    <span style="color: var(--cyan-accent);">"total_tokens"</span>: <span style="color: var(--amber-accent);">25</span>
+  }
+}</code></pre>
+            </div>
+            
+            <!-- Response Fields -->
+            <div style="margin-top: var(--spacing-md);">
+                <h4 style="font-size: 14px; color: var(--green-accent); margin-bottom: var(--spacing-sm);">Response Fields</h4>
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+                    <div style="font-size: 12px;">
+                        <span class="chip" style="font-size: 10px;">id</span>
+                        <span style="color: var(--text-secondary);"> - Unique completion ID</span>
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span class="chip chip--amber" style="font-size: 10px;">choices</span>
+                        <span style="color: var(--text-secondary);"> - Generated responses</span>
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span class="chip chip--green" style="font-size: 10px;">usage</span>
+                        <span style="color: var(--text-secondary);"> - Token usage metrics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Error Codes -->
+    <div style="margin-top: var(--spacing-xxl);">
+        <h3 style="font-size: 18px; margin-bottom: var(--spacing-md); color: var(--cyan-accent);">HTTP Error Codes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="chip chip--green" style="font-size: 11px;">200</span></td>
+                    <td>OK</td>
+                    <td>Request successful</td>
+                    <td>Process response</td>
+                </tr>
+                <tr>
+                    <td><span class="chip chip--amber" style="font-size: 11px;">400</span></td>
+                    <td>Bad Request</td>
+                    <td>Invalid parameters or malformed request</td>
+                    <td>Fix request format</td>
+                </tr>
+                <tr>
+                    <td><span class="chip chip--amber" style="font-size: 11px;">401</span></td>
+                    <td>Unauthorized</td>
+                    <td>Invalid or missing API key</td>
+                    <td>Check authentication</td>
+                </tr>
+                <tr>
+                    <td><span class="chip chip--magenta" style="font-size: 11px;">429</span></td>
+                    <td>Too Many Requests</td>
+                    <td>Rate limit exceeded</td>
+                    <td>Implement backoff</td>
+                </tr>
+                <tr>
+                    <td><span class="chip" style="font-size: 11px;">500</span></td>
+                    <td>Internal Error</td>
+                    <td>Server-side error (retryable)</td>
+                    <td>Retry with backoff</td>
+                </tr>
+                <tr>
+                    <td><span class="chip chip--magenta" style="font-size: 11px;">503</span></td>
+                    <td>Service Unavailable</td>
+                    <td>Model unavailable or loading</td>
+                    <td>Retry after delay</td>
+                </tr>
+                <tr>
+                    <td><span class="chip chip--magenta" style="font-size: 11px;">504</span></td>
+                    <td>Gateway Timeout</td>
+                    <td>Request timeout exceeded</td>
+                    <td>Reduce max_tokens</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Compatibility Note -->
+    <div style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, transparent 100%); border-radius: var(--radius-md); border-left: 3px solid var(--cyan-accent);">
+        <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+            <strong style="color: var(--cyan-accent);">Note:</strong> Compatible with OpenAI SDK, LangChain, LlamaIndex, and any tool using the OpenAI v1 API specification.
+        </p>
+    </div>
+</div>

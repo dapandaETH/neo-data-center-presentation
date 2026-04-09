@@ -1,0 +1,131 @@
+<!-- ============================================
+     Slide 18 - Risk Mitigation
+     2x2 matrix: Technical + Operational Risks
+     ============================================ -->
+
+<div class="slide-content">
+    <h1>Risk Mitigation</h1>
+    <p class="slide-subtitle">Proactive Risk Management Strategies</p>
+
+    <div class="risk-matrix">
+        <!-- Technical Risks Row -->
+        <div class="matrix-header">
+            <h2>Technical Risks</h2>
+            <p>Infrastructure & Technology Challenges</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="risk-card risk-card--technical">
+                <div class="risk-header">
+                    <div class="risk-icon">⚠️</div>
+                    <h3 class="risk-title">GPU Compatibility</h3>
+                    <span class="risk-severity risk-severity--medium">Medium</span>
+                </div>
+                
+                <div class="risk-body">
+                    <div class="risk-description">
+                        <p><strong>Challenge:</strong> GPU driver and CUDA version conflicts across different hardware generations (RTX 3090, 4090, A6000, A100)</p>
+                    </div>
+
+                    <div class="risk-mitigation">
+                        <h4 class="mitigation-label">Mitigation Strategy</h4>
+                        <ul class="mitigation-list">
+                            <li>Thorough testing in staging environment</li>
+                            <li>Standardize on NVIDIA GPU Operator</li>
+                            <li>Version-controlled driver images</li>
+                            <li>Pre-deployment compatibility matrix</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-card risk-card--technical">
+                <div class="risk-header">
+                    <div class="risk-icon">⚡</div>
+                    <h3 class="risk-title">Network Bottlenecks</h3>
+                    <span class="risk-severity risk-severity--medium">Medium</span>
+                </div>
+                
+                <div class="risk-body">
+                    <div class="risk-description">
+                        <p><strong>Challenge:</strong> Inter-node communication latency and GPU-to-GPU data transfer limitations</p>
+                    </div>
+
+                    <div class="risk-mitigation">
+                        <h4 class="mitigation-label">Mitigation Strategy</h4>
+                        <ul class="mitigation-list">
+                            <li>25GbE networking for high bandwidth</li>
+                            <li>NVLink optimization for A100/H100</li>
+                            <li>Network topology optimization</li>
+                            <li>Latency monitoring and alerting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Operational Risks Row -->
+        <div class="matrix-header">
+            <h2>Operational Risks</h2>
+            <p>Process & Team Challenges</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="risk-card risk-card--operational">
+                <div class="risk-header">
+                    <div class="risk-icon">🔥</div>
+                    <h3 class="risk-title">Single Points of Failure</h3>
+                    <span class="risk-severity risk-severity--high">High</span>
+                </div>
+                
+                <div class="risk-body">
+                    <div class="risk-description">
+                        <p><strong>Challenge:</strong> Critical infrastructure components without redundancy could cause service-wide outages</p>
+                    </div>
+
+                    <div class="risk-mitigation">
+                        <h4 class="mitigation-label">Mitigation Strategy</h4>
+                        <ul class="mitigation-list">
+                            <li>Multi-node redundancy (control plane: 3 nodes)</li>
+                            <li>PodDisruptionBudgets for HA</li>
+                            <li>Cross-zone deployment where possible</li>
+                            <li>Disaster recovery procedures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-card risk-card--operational">
+                <div class="risk-header">
+                    <div class="risk-icon">💸</div>
+                    <h3 class="risk-title">Cost Overruns</h3>
+                    <span class="risk-severity risk-severity--medium">Medium</span>
+                </div>
+                
+                <div class="risk-body">
+                    <div class="risk-description">
+                        <p><strong>Challenge:</strong> Unexpected infrastructure costs, GPU compute expenses, and operational overhead</p>
+                    </div>
+
+                    <div class="risk-mitigation">
+                        <h4 class="mitigation-label">Mitigation Strategy</h4>
+                        <ul class="mitigation-list">
+                            <li>GPU sharing for maximum utilization</li>
+                            <li>Dynamic scaling based on demand</li>
+                            <li>Spot instances for dev/staging</li>
+                            <li>Cost tracking dashboards</li>
+                            <li>Budget monitoring and alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="risk-footer">
+        <div class="footer-note">
+            <span class="note-icon">📊</span>
+            <span class="note-text">Continuous risk assessment via <strong>Prometheus monitoring</strong> and <strong>weekly retrospectives</strong></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<!-- Slide 06: High-Level Architecture Grid -->
+<div class="slide-content">
+    <h2>High-Level Architecture</h2>
+    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+        Six core components powering the LLM inference infrastructure
+    </p>
+    
+    <!-- 2x3 Grid of Components -->
+    <div class="grid grid-3" style="margin-bottom: var(--spacing-xl);">
+        <!-- Row 1 -->
+        
+        <!-- Component 1: vLLM Inference Service -->
+        <div class="card card--highlight">
+            <h3 style="color: var(--cyan-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                vLLM Inference Service
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                High-performance LLM serving engine with GPU optimization
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">PagedAttention</span>
+                <span class="chip chip--amber">Dynamic Batching</span>
+                <span class="chip chip--green">Health Checks</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>Continuous batching forthroughput</li>
+                <li>Memory-efficient model loading</li>
+                <li>Prometheus metrics endpoint</li>
+                <li>Ready for multi-model deployment</li>
+            </ul>
+        </div>
+        
+        <!-- Component 2: Kubernetes Infrastructure -->
+        <div class="card">
+            <h3 style="color: var(--amber-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                Kubernetes Infrastructure
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                Container orchestration with GPU resource management
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">Node Pools</span>
+                <span class="chip chip--amber">Resource Quotas</span>
+                <span class="chip chip--green">Network Policies</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>GPU-small (7B models)</li>
+                <li>GPU-medium (13B models)</li>
+                <li>GPU-large (70B+ models)</li>
+                <li>PodDisruptionBudgetsfor HA</li>
+            </ul>
+        </div>
+        
+        <!-- Component 3: API Gateway Layer -->
+        <div class="card">
+            <h3 style="color: var(--green-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                API Gateway Layer
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                Request management and security boundary
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">Kong/Envoy</span>
+                <span class="chip chip--amber">Auth</span>
+                <span class="chip chip--green">Rate Limiting</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>API key validation</li>
+                <li>JWT token support</li>
+                <li>Customer tier rate limits</li>
+                <li>SSL/TLS termination</li>
+            </ul>
+        </div>
+        
+        <!-- Row 2 -->
+        
+        <!-- Component 4: Model Management -->
+        <div class="card">
+            <h3 style="color: var(--magenta-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                Model Management
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                Version control and deployment orchestration
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">Registry</span>
+                <span class="chip chip--amber">Versioning</span>
+                <span class="chip chip--green">A/B Testing</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>Custom model registry service</li>
+                <li>Model download orchestration</li>
+                <li>Metadata management</li>
+                <li>Rollback capabilities</li>
+            </ul>
+        </div>
+        
+        <!-- Component 5: Observability Stack -->
+        <div class="card">
+            <h3 style="color: var(--cyan-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                Observability Stack
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                Monitoring, logging, and distributed tracing
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">Prometheus</span>
+                <span class="chip chip--amber">Grafana</span>
+                <span class="chip chip--green">Jaeger</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>Real-time metrics collection</li>
+                <li>Custom dashboards</li>
+                <li>Alert management</li>
+                <li>Distributed tracing</li>
+            </ul>
+        </div>
+        
+        <!-- Component 6: Storage Layer -->
+        <div class="card">
+            <h3 style="color: var(--amber-accent); font-size: 22px; margin-bottom: var(--spacing-md);">
+                Storage Layer
+            </h3>
+            <p style="font-size: 14px; margin-bottom: var(--spacing-md); color: var(--text-primary);">
+                Model storage and caching infrastructure
+            </p>
+            <div style="margin-top: var(--spacing-md);">
+                <span class="chip">MinIO</span>
+                <span class="chip chip--amber">NVMe</span>
+                <span class="chip chip--green">PostgreSQL</span>
+            </div>
+            <ul style="font-size: 13px; margin-top: var(--spacing-md); margin-left: var(--spacing-md);">
+                <li>NVMe for active models (50TB)</li>
+                <li>MinIO model repository (200TB)</li>
+                <li>PostgreSQL metadata (5TB)</li>
+                <li>Redis caching layer</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Technology Stack -->
+    <div style="margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid rgba(0, 240, 255, 0.1);">
+        <h3style="font-size: 18px; margin-bottom: var(--spacing-md); color: var(--cyan-accent);">Technology Stack</h3>
+        <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+            <span class="chip">Kubernetes 1.28+</span>
+            <span class="chip">vLLM latest</span>
+            <span class="chip">NVIDIA GPU Operator</span>
+            <span class="chip">Kong Gateway</span>
+            <span class="chip">Prometheus</span>
+            <span class="chipchip--green">PostgreSQL 15</span>
+        </div>
+    </div>
+</div>
